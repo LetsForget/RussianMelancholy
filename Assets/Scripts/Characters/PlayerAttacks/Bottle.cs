@@ -14,6 +14,8 @@ namespace Characters.PlayerAttacks
 
         public void Launch(Vector3 target, float h)
         {
+            _exploded = false;
+            
             var currentPos = transform.position;
             var gravity = Physics.gravity.y;
 
@@ -35,8 +37,7 @@ namespace Characters.PlayerAttacks
         private IEnumerator OnCollisionEnter(Collision other)
         {
             if (other.impulse.magnitude < characteristics.ImpulseToExplode 
-                || _exploded 
-                || !other.gameObject.CompareTag("Kid"))
+                || _exploded)
             {
                 yield break;
             }
@@ -49,6 +50,13 @@ namespace Characters.PlayerAttacks
             
             foreach (var coll in colliders)
             {
+                var collRbody = coll.GetComponent<Rigidbody>();
+                if (collRbody)
+                {
+                    bodies.Add(collRbody);
+                }
+
+                
                 var kid = coll.GetComponent<KidController>();
                 if (!kid)
                 {
