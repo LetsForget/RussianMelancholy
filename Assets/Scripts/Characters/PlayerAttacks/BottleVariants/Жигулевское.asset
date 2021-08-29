@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionForce: 100
   explosionRadius: 0.5
-  impulseToExplode: 1
+  impulseToExplode: 0.5
