@@ -9,7 +9,7 @@ namespace Characters.Moving
     public class MoveController : MonoBehaviour
     {
         private const int CornersArrayLength = 5;
-        private const float MinimalMoveDistance = .5f;
+        private const float MinimalMoveDistance = .3f;
         
         public event Action<Vector3> SpeedChanged;
         public event Action<Vector3> MoveTargetChanged;
@@ -44,23 +44,27 @@ namespace Characters.Moving
         /// <param name="pos"></param>
         public void MoveTo(Vector3 pos)
         {
-            if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, _path))
+            if (!NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, _path))
             {
-                var corners = new Vector3[CornersArrayLength];
-                var cornersCount =  _path.GetCornersNonAlloc(corners);
+                return;
+            }
+            
+            var corners = new Vector3[CornersArrayLength];
+            var cornersCount =  _path.GetCornersNonAlloc(corners);
                 
-                if (cornersCount >= 1)
+            if (cornersCount >= 1)
+            {
+                for (int i = 0; i < cornersCount; i++)
                 {
-                    for (int i = 0; i < cornersCount; i++)
-                    {
-                        var distance = Vector3.Distance(corners[i], transform.position);
+                    var distance = Vector3.Distance(corners[i], transform.position);
 
-                        if (distance > MinimalMoveDistance)
-                        {
-                            MoveTo(corners[i], i == cornersCount - 1);
-                            break;
-                        }
+                    if (!(distance > MinimalMoveDistance))
+                    {
+                        continue;
                     }
+                    
+                    MoveTo(corners[i], i == cornersCount - 1);
+                    break;
                 }
             }
         }
@@ -71,18 +75,20 @@ namespace Characters.Moving
         /// <param name="pos"></param>
         public void StartMovingCor(Vector3 pos)
         {
-            if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, _path))
+            if (!NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, _path))
             {
-                var corners = new Vector3[CornersArrayLength];
-                var cornersCount =  _path.GetCornersNonAlloc(corners);
-
-                if (_moveCor != null)
-                {
-                    StopCoroutine(_moveCor);
-                }
-                
-                _moveCor = StartCoroutine(MoveCor(cornersCount, corners, pos));
+                return;
             }
+            
+            var corners = new Vector3[CornersArrayLength];
+            var cornersCount =  _path.GetCornersNonAlloc(corners);
+
+            if (_moveCor != null)
+            {
+                StopCoroutine(_moveCor);
+            }
+                
+            _moveCor = StartCoroutine(MoveCor(cornersCount, corners, pos));
         }
 
         public void StopMovingCor()
@@ -107,7 +113,7 @@ namespace Characters.Moving
 
                 float distance = 99;
 
-                while (distance > StopDistance || lastCorner && distance > .1f)
+                while (distance > MinimalMoveDistance)
                 {
                     distance = MoveTo(cornerPos, lastCorner);
                     yield return null;
