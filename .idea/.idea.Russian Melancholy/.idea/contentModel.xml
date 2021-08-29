@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\MIIR\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\MIIR\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Russian Melancholy.1831877464.00" t="ExcludeRecursive" />
+    <e p="D:\Work\RussianMelancholy\Russian Melancholy" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Characters" t="Include">
+            <e p="Animation" t="Include">
+              <e p="AnimationControllerHandler.cs" t="Include" />
+              <e p="KidAnimationControllerHandler.cs" t="Include" />
+              <e p="PlayerAnimationControllerHandler.cs" t="Include" />
+              <e p="RagdollSwitcher.cs" t="Include" />
+            </e>
+            <e p="KidController.cs" t="Include" />
+            <e p="Moving" t="Include">
+              <e p="MoveController.cs" t="Include" />
+              <e p="MoveParameters" t="Include">
+                <e p="MoveParameters.cs" t="Include" />
+                <e p="MoveParametersContainer.cs" t="Include" />
+              </e>
+              <e p="RotateController.cs" t="Include" />
+            </e>
+            <e p="PlayerAttacks" t="Include">
+              <e p="Bottle.cs" t="Include" />
+              <e p="BottleVariants" t="Include">
+                <e p="BottleCharacteristics.cs" t="Include" />
+              </e>
+            </e>
+            <e p="PlayerController.cs" t="Include" />
+          </e>
+          <e p="Common" t="Include">
+            <e p="CameraController.cs" t="Include" />
+            <e p="InputHandler.cs" t="Include" />
+            <e p="MouseHandler.cs" t="Include" />
+            <e p="Pool.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Russian Melancholy.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
