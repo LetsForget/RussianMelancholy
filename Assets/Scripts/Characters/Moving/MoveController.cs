@@ -9,7 +9,7 @@ namespace Characters.Moving
     public class MoveController : MonoBehaviour
     {
         private const int CornersArrayLength = 5;
-        private const float MinimalMoveDistance = .5f;
+        private const float MinimalMoveDistance = .3f;
         
         public event Action<Vector3> SpeedChanged;
         public event Action<Vector3> MoveTargetChanged;
@@ -107,7 +107,7 @@ namespace Characters.Moving
 
                 float distance = 99;
 
-                while (distance > StopDistance || lastCorner && distance > .1f)
+                while (distance > MinimalMoveDistance)
                 {
                     distance = MoveTo(cornerPos, lastCorner);
                     yield return null;
