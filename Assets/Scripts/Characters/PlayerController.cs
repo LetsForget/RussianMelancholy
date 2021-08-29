@@ -15,6 +15,7 @@ namespace Characters
         
         [SerializeField] private Transform bottlePlace;
         [SerializeField] private Bottle bottlePrefab;
+        [SerializeField] private float maxThrowDistance;
         
         private MoveController _moveController; 
         private RotateController _rotateController;
@@ -42,14 +43,25 @@ namespace Characters
             
             if (InputHandler.ShiftPressed)
             {
-                ThrowBottle();
                 _moveController.StopMovingCor();
+                _rotateController.StartRotateCor(hit.point);
+
+                var direction = hit.point - transform.position;
+                var distance = direction.magnitude;
                 
-                _lastTargetedPoint = hit.point;
-                _rotateController.StartRotateCor(_lastTargetedPoint);
+                if (distance > maxThrowDistance)
+                {
+                    _lastTargetedPoint = transform.position + direction.normalized * maxThrowDistance;
+                    distance = maxThrowDistance;
+                }
+                else
+                {
+                    _lastTargetedPoint = hit.point;
+                }
                 
-                var distance = Vector3.Distance(hit.point, transform.position);
                 _lastTargetedHeight = .25f * distance;
+                
+                ThrowBottle();
             }
             else
             {
