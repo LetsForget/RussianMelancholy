@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MainHeroMoveParameters
   m_EditorClassIdentifier: 
   maxSpeed: 2.5
-  acceleration: 1.17
+  acceleration: 1
   deceleration: 2
   turnSpeed: 25
