@@ -15,11 +15,11 @@ namespace Characters.Animation
             base.Start();
             _kidController = GetComponent<KidController>();
             
-            _kidController.AbuseTrigger += OnAbuseTrigger;
+            _kidController.StartAbuse += OnStartAbuse;
             _kidController.StopAbuse += OnStopAbuse;
         }
         
-        private void OnAbuseTrigger()
+        private void OnStartAbuse()
         {
             Animator.SetTrigger(Abuse);
         }

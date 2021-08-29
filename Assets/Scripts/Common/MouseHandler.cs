@@ -33,5 +33,10 @@ namespace Common
                 GroundClick?.Invoke(hit);
             }
         }
+
+        private void OnDestroy()
+        {
+            GroundClick = null;
+        }
     }
 }

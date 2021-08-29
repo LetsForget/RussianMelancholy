@@ -95,5 +95,11 @@ namespace Characters
             
             _throwing = false;
         }
+
+        private void OnDestroy()
+        {
+            BottleThrowStart = null;
+            BottleThrowEnd = null;
+        }
     }
 }

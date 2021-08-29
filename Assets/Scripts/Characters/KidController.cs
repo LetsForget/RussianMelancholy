@@ -9,7 +9,7 @@ namespace Characters
     [RequireComponent(typeof(RagdollSwitcher))]
     public class KidController : MonoBehaviour
     {
-        public event Action AbuseTrigger;
+        public event Action StartAbuse;
         public event Action StopAbuse;
         
         [SerializeField] private Transform abuseTarget;
@@ -33,7 +33,7 @@ namespace Characters
                 
                 if (value)
                 {
-                    AbuseTrigger?.Invoke();
+                    StartAbuse?.Invoke();
                 }
                 else
                 {
@@ -90,6 +90,15 @@ namespace Characters
             enabled = false;
         }
 
-        public Rigidbody[] GetRagdollRigidbodies() => _ragdollSwitcher.RagdollBodies;
+        public Rigidbody[] GetRagdollRigidbodies()
+        {
+            return _ragdollSwitcher.RagdollBodies;
+        }
+
+        private void OnDestroy()
+        {
+            StartAbuse = null;
+            StopAbuse = null;
+        }
     }
 }

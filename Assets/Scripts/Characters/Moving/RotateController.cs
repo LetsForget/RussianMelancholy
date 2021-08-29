@@ -84,5 +84,10 @@ namespace Characters.Moving
 
             transform.rotation *= Quaternion.AngleAxis(step, up);
         }
+
+        private void OnDestroy()
+        {
+            TurnChanged = null;
+        }
     }
 }

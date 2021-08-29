@@ -30,5 +30,10 @@ namespace Common
                 LMBPressed?.Invoke();
             }
         }
+
+        private void OnDestroy()
+        {
+            LMBPressed = null;
+        }
     }
 }

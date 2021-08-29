@@ -168,5 +168,11 @@ namespace Characters.Moving
             _rigidbody.velocity += direction.normalized * additiveSpeed;
             return distance;
         }
+
+        private void OnDestroy()
+        {
+            SpeedChanged = null;
+            MoveTargetChanged = null;
+        }
     }
 }
